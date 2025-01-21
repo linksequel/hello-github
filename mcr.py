@@ -22,14 +22,12 @@ def is_win(game):
     return win
 
 def is_tie(game):
-    tie = False
-    if not is_win(game):
-        for row in game:
-            for cell in row:
-                if cell == '':
-                    return tie
-        tie = True
-    return tie
+    if is_win(game):
+        return False
+    # 使用 all 函数和列表推导式检查每一行的每个单元格是否都不为空
+    if all(all(cell!= '' for cell in row) for row in game):
+        return True
+    return False
 
 def main():
     game = [[' ' for _ in range(3)] for _ in range(3)]  # Tic-tac-toe board
